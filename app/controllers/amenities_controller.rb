@@ -1,5 +1,5 @@
 class AmenitiesController < ApplicationController
-  before_action :load_venue, except: [:update, :destroy]
+  before_action :load_venue, except: [:update]
   load_resource only: [:edit, :update, :destroy]
 
   def index
@@ -42,8 +42,8 @@ class AmenitiesController < ApplicationController
 
   def destroy
     if @amenity.is_default?
-      @venue_amenity = @amenity.venue_amenities
-      if VenueAmenity.destroy @venue_amenity
+      @venue_amenity = VenueAmenity.select_belongs_to @amenity.id, @venue.id
+      if @venue_amenity.destroy
         flash[:success] = t "amenities.destroy.delete_successfully"
       else
         flash[:danger] = t "amenities.destroy.delete_error"

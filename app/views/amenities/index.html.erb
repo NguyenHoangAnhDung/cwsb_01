@@ -54,9 +54,11 @@
               </td>
               <td class="text-center">
                 <div class="btn-group btn-group-xs">
-                  <%= link_to edit_venue_amenity_path(@venue, amenity),
-                    class: "btn btn-default" do %>
-                    <i class="fa fa-pencil"></i>
+                  <% unless amenity.is_default? %>
+                    <%= link_to edit_venue_amenity_path(@venue, amenity),
+                      class: "btn btn-default" do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
                   <% end %>
                   <%= link_to venue_amenity_path(@venue, amenity),
                     method: :delete, class: "btn btn-danger",

@@ -6,11 +6,10 @@ class ServiceChargesController < ApplicationController
     @service_charge = @amenity.create_service_charge service_charges_params
     if @service_charge.save
       flash[:success] = t "service_charge.success.create"
-      redirect_to venue_amenities_path
     else
       flash[:danger] = t "service_charge.errors.create"
-      render :new
     end
+    redirect_to venue_amenities_path
   end
 
   def update

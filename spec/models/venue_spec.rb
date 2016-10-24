@@ -14,5 +14,9 @@ RSpec.describe Venue, type: :model do
 
   context "validates" do
     it {is_expected.to validate_presence_of :name}
+    it "create amenity default for venue" do
+      FactoryGirl.create(:amenity, is_default: :true)
+      FactoryGirl.create(:venue)
+    end
   end
 end
