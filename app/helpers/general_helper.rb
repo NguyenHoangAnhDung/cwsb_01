@@ -11,4 +11,12 @@ module GeneralHelper
     end
     hash
   end
+
+  def check_or_uncheck_checkbox booking_state
+    if booking_state == "Rejected" || booking_state == "Pending"
+      return false
+    else
+      return true
+    end
+  end
 end

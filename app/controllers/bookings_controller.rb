@@ -12,9 +12,21 @@ class BookingsController < ApplicationController
     @booking.save
   end
 
+  def update
+    respond_to do |format|
+      @booking.update_attributes booking_params
+      flash[:success] = t "amenities.new.edit_success"
+      format.html {redirect_to store_bookings_path}
+      format.json do
+        render json: {
+        }
+      end
+    end
+  end
+
   private
   def booking_params
     params.require(:booking).permit(:space_id, :booking_from, :duration,
-      :booking_type_id, :quantity).merge! user: current_user
+      :booking_type_id, :quantity, :state).merge! user: current_user
   end
 end

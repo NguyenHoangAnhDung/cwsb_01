@@ -1,0 +1,48 @@
+<%= javascript_include_tag "store_bookings/index.js" %>
+<%= provide :title, t(".title")  %>
+<h1><%= t ".title" %></h1>
+<% @venues.each do |venue| %>
+  <%= hidden_field_tag "venue_id", venue.id, id: "venue-id-#{}" %>
+  <%= hidden_field_tag "venue_id", @venues.length, id: "times" %>
+  <h2><%= venue.name %></h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Space name</th>
+      <th>Who booking</th>
+      <th>Booking from</th>
+      <th>Type of booking</th>
+      <th>Quantity</th>
+      <th>Status</th>
+      <th>Price</th>
+    </tr>
+    <%= check_box "", "", id: "checkbox-all-#{venue.id}" %>
+    <label for="different" class="checkbox-label"><%= t "check_all" %></label>
+    <% venue.orders.each do |order| %>
+      <% order.bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.id %></td>
+          <td><%= booking.space.space_type %></td>
+          <td><%= booking.user.name %></td>
+          <td><%= booking.booking_from %></td>
+          <td><%= booking.booking_type.name %></td>
+          <td><%= booking.quantity %></td>
+          <td id="state-<%= booking.id %>"><%= booking.state %></td>
+          <td>
+            <%= form_for edit_booking_path(booking),
+              html: {name: "booking-#{booking.id}",
+              remote: true, method: :get} do |f| %>
+              <label class="switch switch-primary">
+                <%= f.check_box booking.state, {id: booking.id,
+                  class: "cb-confirm",
+                  checked: check_or_uncheck_checkbox(booking.state)},
+                  booking.state %>
+                <span></span>
+              </label>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>

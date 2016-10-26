@@ -250,3 +250,6 @@ en:
     errors:
       create: "Have problem when create service charge"
       update: "Have problem when update service charge"
+  store_bookings:
+    index:
+      title: "All your venues"

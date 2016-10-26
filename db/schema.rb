@@ -65,16 +65,16 @@ ActiveRecord::Schema.define(version: 20161019015247) do
   end
 
   create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "booking_from",    null: false
-    t.integer  "duration",        null: false
-    t.integer  "quantity",        null: false
-    t.integer  "state",           null: false
+    t.datetime "booking_from",                null: false
+    t.integer  "duration",                    null: false
+    t.integer  "quantity",                    null: false
+    t.integer  "state",           default: 0, null: false
     t.integer  "user_id"
     t.integer  "space_id"
     t.integer  "booking_type_id"
     t.integer  "order_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["booking_type_id"], name: "index_bookings_on_booking_type_id", using: :btree
     t.index ["order_id"], name: "index_bookings_on_order_id", using: :btree
     t.index ["space_id"], name: "index_bookings_on_space_id", using: :btree
