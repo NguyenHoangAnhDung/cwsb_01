@@ -1,11 +1,12 @@
-<% provide :title, t(".block_title") %>
 <%= javascript_include_tag "amenity/index.js" %>
+<%= javascript_include_tag "form_outline.js" %>
+<% provide :title, t(".block_title") %>
 <div id="page-content">
   <div class="block">
     <div class="block-title">
       <h2><strong><%= t ".block_title" %></strong></h2>
     </div>
-    <%= render "form_outline" %>
+    <%= render "layouts/form_outline", active_id: "amenities" %>
     <%= hidden_field_tag "venue", @venue.id, class: "hidden-venue" %>
     <%= hidden_field_tag "price", t(".vnd_per") %>
     <%= hidden_field_tag "free", t(".free") %>

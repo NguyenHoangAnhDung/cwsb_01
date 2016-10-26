@@ -70,6 +70,12 @@ en:
     venues: "Venues"
     booking: "Booking"
     statistics: "Statistics"
+    clickable_venue: "VENUE"
+    clickable_details: "DETAILS"
+    clickable_space_pricing: "SPACES AND PRICING"
+    clickable_admins: "ADMINS"
+    clickable_amenities: "AMENITIES"
+    clickable_marketplaces: "MARKETPLACE"
   users:
     mailer:
       confirm:
@@ -216,13 +222,6 @@ en:
       free: "Free"
       vnd_per: " VND per "
       confirm: "Are you sure?"
-    form_outline:
-      clickable_venue: "VENUE"
-      clickable_details: "DETAILS"
-      clickable_space_pricing: "SPACES AND PRICING"
-      clickable_admins: "ADMINS"
-      clickable_amenities: "AMENITIES"
-      clickable_marketplaces: "MARKETPLACE"
     edit:
       price: "Price (VND)"
       price_plholder: "E.g. 120"
@@ -248,3 +247,8 @@ en:
     errors:
       create: "Have problem when create service charge"
       update: "Have problem when update service charge"
+  spaces:
+    errors:
+      load_venue: "Can't find any venue"
+    index:
+      title: "Spaces"

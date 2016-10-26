@@ -1,0 +1,51 @@
+<%= provide :title, t ".title"  %>
+<div class="row">
+  <div class="col-md-9">
+    <div class="col-sm-10 col-lg-3">
+      <div class="widget">
+        <div class="widget-extra-full venue-items-info">
+          <div class="widget-options">
+            <a href="javascript:void(0)" class="btn btn-xs btn-default"
+              data-toggle="tooltip" title="Settings">
+              <i class="fa fa-cog"></i>
+            </a>
+          </div>
+          <div class="col-xs-9 text-right gutter">
+            <%= link_to new_venue_path, class: "btn btn-default" do %>
+              <i class="fa fa-plus-square"></i></i> <%= t "add_venue" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% @venues.each do |venue| %>
+      <div class="col-sm-10 col-lg-3">
+        <div class="widget">
+          <div class="widget-extra-full venue-items">
+            <div class="widget-options">
+              <a href="javascript:void(0)" class="btn btn-xs btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
+            </div>
+            <div class="pie-chart" data-percent="90" data-line-width="2" data-bar-color="#333333" data-track-color="#eeeeee">
+              <% unless venue.images.blank? %>
+                <%= image_tag venue.images.first.picture_url,
+                  class: "wth-80", class:"img-circle" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-extra themed-background text-center venue-info">
+            <h3 class="widget-content-light">
+              <strong><%= venue.name %></strong><br>
+              <small><%= venue.description %></small>
+            </h3>
+            <div class="widget-content-light venue-address">
+              <i class="hi hi-map-marker"></i><small><%= venue.address_details %></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>
+

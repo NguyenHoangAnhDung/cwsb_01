@@ -39,9 +39,15 @@
   overflow: hidden;
   height: 440px;
   width: 350px;
+  position: relative;
+  right: 17px;
 }
 
 .map-show{
   height: 440px;
   width: 350px;
+}
+
+.row-venue{
+  margin-top: 20px;
 }

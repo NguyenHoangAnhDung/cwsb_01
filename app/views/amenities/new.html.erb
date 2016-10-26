@@ -1,10 +1,11 @@
 <%= javascript_include_tag "amenity/new.js" %>
+<%= javascript_include_tag "form_outline.js" %>
 <div id="page-content">
   <div class="block">
     <div class="block-title">
       <h2><strong><%= t "amenities.new.block_title" %></strong></h2>
     </div>
-    <%= render "form_outline" %>
+    <%= render "layouts/form_outline", active_id: "amenities" %>
     <div class="block">
       <div class="block-title text-center">
         <h1><strong><%= t "amenities.new.title" %></strong></h1>

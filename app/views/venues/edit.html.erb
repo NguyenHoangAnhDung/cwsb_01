@@ -1,81 +1,78 @@
 <%= javascript_include_tag "map" %>
-<div class="row">
-  <div class="col-md-9">
-    <div class="block full">
-      <% @venue.name %>
+<%= javascript_include_tag "form_outline.js" %>
+<div id="page-content">
+  <div class="block">
+    <div class="block-title">
+      <h2><strong><%= t ".block_title" %></strong></h2>
     </div>
-    <div class="block full">
-      <div class="block-title">
-        <ul class="nav nav-tabs" data-toggle="tabs">
-          <li class="active"><a href="#courses-categories"><%= t "venue" %></a></li>
-          <li><a href="#courses-tools"><%= t "detail" %></a></li>
-        </ul>
-      </div>
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-8">
-          <div class="tab-content">
-            <div class="tab-pane <%= 'active' if params[:active].blank? %>" id="courses-categories">
-              <%= simple_form_for @venue do |f| %>
-                <%= f.input :name, input_html: {class: "form-control"} %>
-                <%= f.input :description, input_html: {class: "form-control"} %>
-                <%= f.simple_fields_for :address do |form_address| %>
-                  <%= form_address.input :details,
-                    input_html: {class: "form-control", id: "address"} %>
-                  <%= form_address.input :city,
-                    input_html: {class: "form-control"} %>
-                  <%= form_address.input :postal_code,
-                    input_html: {class: "form-control"} %>
-                  <%= form_address.input :street_address,
-                    input_html: {class: "form-control"} %>
-                  <%= form_address.input :unit,
-                    input_html: {class: "form-control"} %>
-                <% end %>
-                <%= f.input :phone_number,
-                  input_html: {class: "form-control"} %>
-                <%= f.input :email, input_html: {class: "form-control"} %>
-                <%= f.input :website, input_html: {class: "form-control"} %>
-                <%= f.button :submit, class: "btn btn-primary pull-right" %>
-              <% end %>
-            </div>
-            <div class="tab-pane <%= params[:active] %>" id="courses-tools">
-              <%= simple_form_for @venue do |f| %>
-                <%= f.simple_fields_for :images do |form_image| %>
-                  <% unless @venue.images.first.picture_url.blank? %>
-                    <%= image_tag @venue.images.first.picture_url,
-                      class: "wth-80" %>
+    <%= render "layouts/form_outline", active_id: "venue", venue: @venue %>
+    <div class="row row-venue">
+      <div class="col-md-9">
+        <div class="block full">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
+              <div class="tab-content">
+                <div class="tab-pane <%= 'active' if params[:active].blank? %>" id="courses-categories">
+                  <%= simple_form_for @venue do |f| %>
+                    <%= f.input :name, input_html: {class: "form-control"} %>
+                    <%= f.input :description, input_html: {class: "form-control"} %>
+                    <%= f.simple_fields_for :address do |form_address| %>
+                      <%= form_address.input :details,
+                        input_html: {class: "form-control", id: "address"} %>
+                      <%= form_address.input :city,
+                        input_html: {class: "form-control"} %>
+                      <%= form_address.input :postal_code,
+                        input_html: {class: "form-control"} %>
+                      <%= form_address.input :street_address,
+                        input_html: {class: "form-control"} %>
+                      <%= form_address.input :unit,
+                        input_html: {class: "form-control"} %>
+                    <% end %>
+                    <%= f.input :phone_number,
+                      input_html: {class: "form-control"} %>
+                    <%= f.input :email, input_html: {class: "form-control"} %>
+                    <%= f.input :website, input_html: {class: "form-control"} %>
+                    <%= f.button :submit, class: "btn btn-primary pull-right" %>
                   <% end %>
-                  <%= form_image.input :picture,
-                    input_html: {class: "form-control"} %>
-                <% end %>
-                <%= f.input :number_of_floors,
-                  input_html: {class: "form-control"} %>
-                <%= f.input :floor_space, input_html: {class: "form-control"} %>
-                <%= f.input :number_of_rooms,
-                  input_html: {class: "form-control"} %>
-                <%= f.input :number_of_desks,
-                  input_html: {class: "form-control"} %>
-                <%= hidden_field_tag :detail, :active %>
-                <%= f.button :submit, class: "btn btn-primary pull-right" %>
-              <% end %>
+                </div>
+                <div class="tab-pane <%= params[:active] %>" id="courses-tools">
+                  <%= simple_form_for @venue do |f| %>
+                    <%= f.simple_fields_for :images do |form_image| %>
+                      <% unless @venue.images.first.picture_url.blank? %>
+                        <%= image_tag @venue.images.first.picture_url,
+                          class: "wth-80" %>
+                      <% end %>
+                      <%= form_image.input :picture,
+                        input_html: {class: "form-control"} %>
+                    <% end %>
+                    <%= f.input :number_of_floors,
+                      input_html: {class: "form-control"} %>
+                    <%= f.input :floor_space, input_html: {class: "form-control"} %>
+                    <%= f.input :number_of_rooms,
+                      input_html: {class: "form-control"} %>
+                    <%= f.input :number_of_desks,
+                      input_html: {class: "form-control"} %>
+                    <%= hidden_field_tag :detail, :active %>
+                    <%= f.button :submit, class: "btn btn-primary pull-right" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-3"></div>
       </div>
-    </div>
-  </div>
-
-  <div class="col-md-3" >
-    <div class="block full">
-      <div class="block-title">
-        <h4><strong><%= t "markers" %></strong><%= t "map" %></h4>
-      </div>
-      <div class="map-info">
-         <div id="gmap_canvas" class="map-show"></div>
+      <div class="col-md-3" >
+        <div class="block full">
+          <div class="block-title">
+            <h4><strong><%= t "markers" %></strong><%= t "map" %></h4>
+          </div>
+          <div class="map-info">
+             <div id="gmap_canvas" class="map-show"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhyJ3SWFP8U5Xmqe3H3X_iOsR1nw1v6_Q&&libraries=places"></script>
-

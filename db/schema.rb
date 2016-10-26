@@ -68,15 +68,14 @@ ActiveRecord::Schema.define(version: 20161019015247) do
     t.datetime "booking_from",    null: false
     t.integer  "duration",        null: false
     t.integer  "quantity",        null: false
-    t.integer  "state",           null: false
+    t.boolean  "is_confirmed"
+    t.boolean  "is_paid"
     t.integer  "user_id"
     t.integer  "space_id"
     t.integer  "booking_type_id"
-    t.integer  "order_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["booking_type_id"], name: "index_bookings_on_booking_type_id", using: :btree
-    t.index ["order_id"], name: "index_bookings_on_order_id", using: :btree
     t.index ["space_id"], name: "index_bookings_on_space_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
@@ -321,7 +320,6 @@ ActiveRecord::Schema.define(version: 20161019015247) do
   add_foreign_key "addresses", "counties"
   add_foreign_key "admins", "roles"
   add_foreign_key "bookings", "booking_types"
-  add_foreign_key "bookings", "orders"
   add_foreign_key "bookings", "spaces"
   add_foreign_key "bookings", "users"
   add_foreign_key "cities", "countries"
